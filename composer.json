@@ -1,0 +1,17 @@
+{
+    "name": "waryway/foodfromeurope",
+    "description": "N/A",
+    "authors": [
+        {
+            "name": "Kyle Wiering",
+            "email": "kawiering@yahoo.com"
+        }
+    ],
+    "require": {},
+	"autoload": {
+		"psr-4": {
+			"src\\": "src/"
+            "src\\singleton\\": "src/singleton/"
+		}
+	}
+}
