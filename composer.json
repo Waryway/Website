@@ -1,5 +1,5 @@
 {
-    "name": "waryway/foodfromeurope",
+    "name": "waryway/onlinestore",
     "description": "N/A",
     "authors": [
         {
@@ -10,7 +10,7 @@
     "require": {},
 	"autoload": {
 		"psr-4": {
-			"src\\": "src/"
+			"src\\": "src/",
             "src\\singleton\\": "src/singleton/"
 		}
 	}
