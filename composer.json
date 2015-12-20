@@ -7,7 +7,9 @@
             "email": "kawiering@yahoo.com"
         }
     ],
-    "require": {},
+    "require": {
+        "apache/log4php": "^2.3"
+    },
 	"autoload": {
 		"psr-4": {
 			"src\\": "src/",
