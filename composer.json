@@ -1,0 +1,12 @@
+{
+    "name": "waryway/website",
+    "authors": [
+        {
+            "name": "Kyle Wiering",
+            "email": "kyle.wiering@yahoo.com"
+        }
+    ],
+    "require": {
+        "laravel/laravel": "^5.2"
+    }
+}
