@@ -8,7 +8,13 @@ class Index
 {
 	use src\traits\Page;
 	
-	protected function RenderBody()
+	protected function Configure()
+	{
+		$this->setPageName('WaryWay: Narrow Is The Way, Which Leadeth Unto Life.');
+	}
+	
+	
+	protected function RenderBodyContent()
 	{		
 		return 'Welcome to waryway.com!';
 	}

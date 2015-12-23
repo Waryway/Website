@@ -25,12 +25,9 @@ trait Page
 	
 	public function setPageName($pageName)
 	{
-		
-		
-		
 		if (strlen($pageName) > 64)
 		{
-			
+			$this->log->warn('The following pagename exceeds 64 characters: '. $pageName);
 		}
 		$this->pageName = $pageName;
 	}
@@ -39,9 +36,8 @@ trait Page
     final public function __construct()
 	{
 		\Logger::configure("..\\config\\logger.xml");
-				$this->log = \Logger::getLogger(__CLASS__);
+		$this->log = \Logger::getLogger(__CLASS__);
 
-		$this->log->error('aliens');
 		
 		
 		/** @var $this->Session Session */
@@ -52,21 +48,29 @@ trait Page
 	
 	final private function RenderPage()
 	{
+		$this->Configure();
 		$headContent = $this->RenderHead();
 		$bodyContent = $this->RenderBody();
 		
 		echo <<<HTML
-<html><head>{$headContent}</head><body>{$bodyContent}</body></html>
+<!DOCTYPE html><html><head>{$headContent}</head><body>{$bodyContent}</body></html>
 HTML;
 	}
+	
+	protected function Configure()
+	{
+		$this->log->error('Default configuration was not overridden for this page');
+	}
+	
 	
 	final private function RenderHead()
 	{
 		$title = $this->RenderTitle();
+		$meta = $this->RenderMeta();
 		$css = $this->RenderCss();
 		$javascript = $this->RenderJavascript();
 		
-		return '';
+		return $title . $meta . $css . $javascript;
 	}
 	
 	final private function RenderTitle()
@@ -74,9 +78,14 @@ HTML;
 		return '<title>'.$this->getPageName().'</title>';
 	}
 	
-	protected function RenderCss()
+	final private function RenderMeta()
 	{
 		return '';
+	}
+	
+	final private function RenderCss()
+	{
+		return '<link type="text/css" rel="stylesheet" href="'.\src\classes\Environment::URL_PAGE_TO_CONFIG.'style.css"/>';
 	}
 	
 	protected function RenderJavascript()
@@ -84,11 +93,28 @@ HTML;
 		return '';
 	}
 	
-	protected function RenderBody()
+	final private function RenderBody()
+	{
+		$banner = $this->RenderBanner();
+		$heading = '<h1>'.$this->getPageName().'</h1>';
+		$bodyContent = $this->RenderBodyContent();
+		
+		
+		return $banner . $heading . $bodyContent;
+	}
+	
+	final private function RenderBanner()
+	{
+		return <<<BANNER
+<div class="navbar"><div><a href="index.php">Waryway</a></div></div>
+BANNER;
+	}
+	
+	
+	protected function RenderBodyContent()
 	{
 		return "We're sorry, this page just never got its content going!";
 	}
-	
 	
 	
 	
